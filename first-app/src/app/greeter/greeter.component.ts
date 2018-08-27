@@ -9,8 +9,8 @@ export class GreeterComponent{
 
 	greetMessage : string = '[Default dummy greet message]';
 
-	onGreetClick(){
-		this.greetMessage = '[A new greet message is going to be display here';
+	onGreetClick(userName){
+		this.greetMessage = `Hi ${userName}, Have a nice day!`;
 	}
 
 }
