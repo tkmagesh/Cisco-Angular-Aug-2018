@@ -8,6 +8,8 @@ import { BugTrackerComponent } from './bugTracker/bugTracker.component';
 import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
 import { SortPipe } from './bugTracker/pipes/sort.pipe';
 
+import { BugOperationsService } from './bugTracker/services/bugOperations.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +20,9 @@ import { SortPipe } from './bugTracker/pipes/sort.pipe';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+  	BugOperationsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
