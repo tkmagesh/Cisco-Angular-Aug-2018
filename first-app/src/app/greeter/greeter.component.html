@@ -3,4 +3,4 @@
 <label for="">User Name :</label>
 <input type="text" #txtUserName>
 <input type="button" value="Greet" (click)="onGreetClick(txtUserName.value)">
-<div class="message">{{greetMessage}}</div>
+<div class="message">{{greetMessage | titlecase}}</div>
