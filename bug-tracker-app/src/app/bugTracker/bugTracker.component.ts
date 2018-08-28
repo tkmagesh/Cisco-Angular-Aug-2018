@@ -32,6 +32,7 @@ export class BugTrackerComponent{
 		this.bugs = this.bugs.filter(bug => !bug.isClosed);
 	}
 
+	/* convert the following to a 'closedCountPipe' */
 	getClosedCount(){
 		return this.bugs.reduce((result, bug)=> bug.isClosed ? ++result : result, 0);
 	}
