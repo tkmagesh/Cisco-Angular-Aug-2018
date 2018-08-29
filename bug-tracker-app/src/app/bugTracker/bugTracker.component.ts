@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
 
@@ -6,23 +6,31 @@ import { BugOperationsService } from './services/bugOperations.service';
 	selector : 'app-bug-tracker',
 	templateUrl : './bugTracker.component.html',
 })
-export class BugTrackerComponent{
+export class BugTrackerComponent implements OnInit{
 	bugs : Bug[] = [];
 
 	sortBy : string = 'name';
 	sortDesc : boolean = false;
 
+	newBugName : string = '';
+
 	constructor(private bugOperations : BugOperationsService){
+		
+	}
+
+	ngOnInit(){
 		this.bugs = this.bugOperations.getAll();
 	}
 
-	onAddNewClick(newBugName : string){
-		let newBug = this.bugOperations.createNew(newBugName);
-		this.bugs.push(newBug);
+	onAddNewClick(){
+		let newBug = this.bugOperations.createNew(this.newBugName);
+		this.bugs = [...this.bugs, newBug];
+		this.newBugName = '';
 	}
 
-	onBugNameClick(bug : Bug){
-		this.bugOperations.toggle(bug);
+	onBugNameClick(bugToToggle : Bug){
+		let toggledBug = this.bugOperations.toggle(bugToToggle);
+		this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);
 	}
 
 	onRemoveClosedClick(){
@@ -34,7 +42,8 @@ export class BugTrackerComponent{
 	}
 
 	/* convert the following to a 'closedCountPipe' */
-	getClosedCount(){
+	/*getClosedCount(){
+		console.log('getClosedCount triggered');
 		return this.bugs.reduce((result, bug)=> bug.isClosed ? ++result : result, 0);
-	}
+	}*/
 }
