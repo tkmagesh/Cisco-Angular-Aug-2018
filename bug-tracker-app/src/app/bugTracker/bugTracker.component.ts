@@ -4,7 +4,7 @@ import { BugOperationsService } from './services/bugOperations.service';
 
 @Component({
 	selector : 'app-bug-tracker',
-	templateUrl : './bugTracker.component.html'
+	templateUrl : './bugTracker.component.html',
 })
 export class BugTrackerComponent{
 	bugs : Bug[] = [];
@@ -13,10 +13,7 @@ export class BugTrackerComponent{
 	sortDesc : boolean = false;
 
 	constructor(private bugOperations : BugOperationsService){
-		this.bugs.push(this.bugOperations.createNew('Server communication failre'));
-		this.bugs.push(this.bugOperations.createNew('User actions not recognised'));
-		this.bugs.push(this.bugOperations.createNew('Application not responding'));
-		this.bugs.push(this.bugOperations.createNew('Data integrity checks failed'));
+		this.bugs = this.bugOperations.getAll();
 	}
 
 	onAddNewClick(newBugName : string){
@@ -29,6 +26,10 @@ export class BugTrackerComponent{
 	}
 
 	onRemoveClosedClick(){
+		this
+			.bugs
+			.filter(bug => bug.isClosed)
+			.forEach(closedBug => this.bugOperations.remove(closedBug));
 		this.bugs = this.bugs.filter(bug => !bug.isClosed);
 	}
 
