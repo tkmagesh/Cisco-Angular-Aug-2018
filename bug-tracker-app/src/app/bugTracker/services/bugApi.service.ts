@@ -21,22 +21,24 @@ export class BugApiService{
 		return p2;*/
 
 		return this.httpClient
-			.get(this.serviceUrl);
+			.get<Bug[]>(this.serviceUrl);
 	}
+
 	save(bugData) : Observable<Bug>{
 		if (bugData.id === 0){
 			return this
 				.httpClient
-				.post(this.serviceUrl, bugData);
+				.post<Bug>(this.serviceUrl, bugData);
 		} else {
 			return this
 				.httpClient
-				.put(`${this.serviceUrl}/${bugData.id}`, bugData);
+				.put<Bug>(`${this.serviceUrl}/${bugData.id}`, bugData);
 		}
 	}
+	
 	remove(bugData) : Observable<any>{
 		return this
 			.httpClient
-				.delete(`${this.serviceUrl}/${bugData.id}`);
+				.delete<any>(`${this.serviceUrl}/${bugData.id}`);
 	}
 }
