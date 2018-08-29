@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
+import { BugStatsComponent } from './bugTracker/views/bugStats.component';
 
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 import { TrimTextPipe } from './bugTracker/pipes/trimText.pipe';
@@ -21,6 +22,7 @@ console.log(moment('2018-08-29T04:26:44.603Z').fromNow());
   declarations: [
     AppComponent
     , BugTrackerComponent
+    , BugStatsComponent
     , ClosedCountPipe
     , TrimTextPipe
     , SortPipe
