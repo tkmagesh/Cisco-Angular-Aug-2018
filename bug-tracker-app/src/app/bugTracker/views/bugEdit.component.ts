@@ -27,13 +27,21 @@ export class BugEditComponent{
 		let newBug = this.bugOperations.createNew(this.newBugName);
 		this.onBugAdded.emit(newBug);
 		this.newBugName = '';
-	}*/\
+	}*/
+
+	/*onAddNewClick(){
+		
+		this.bugOperations
+			.createNew(this.newBugName)
+			.then(newBug => this.onBugAdded.emit(newBug));
+		this.newBugName = '';
+	}*/
 
 	onAddNewClick(){
 		
 		this.bugOperations
 			.createNew(this.newBugName)
-			.then(newBug => this.onBugAdded.emit(newBug));
+			.subscribe(newBug => this.onBugAdded.emit(newBug));
 		this.newBugName = '';
 	}
 
