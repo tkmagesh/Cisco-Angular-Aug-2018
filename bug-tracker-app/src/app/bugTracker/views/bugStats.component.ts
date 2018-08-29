@@ -8,7 +8,6 @@ import { Bug } from '../models/Bug';
 			<span class="closed">{{bugs | closedCount}}</span>
 			<span> / </span>
 			<span>{{ bugs.length }}</span>
-			<div>{{getCurrentTime()}}</div>
 		</section>
 	`,
 	changeDetection : ChangeDetectionStrategy.OnPush
